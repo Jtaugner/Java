@@ -38,7 +38,19 @@ class Exceptions {
         }
         //Выполнение статического метода finallyExample() - описание внутри.
         System.out.println("Метод возвращает: " + finallyExample());
-    }
+        //Многократный перехват
+        try {
+            //Исключение типа ArithmeticException
+            int a = 0;//Заменить значение a на любое другое, чтобы выполнить другое исключение
+            int b = 5;
+            b /= a;
+            //Исключение типа ArrayIndexOutOfBoundsException
+            int arr[] = {2,3};
+            arr[2] = 5;
+        }catch (ArithmeticException | ArrayIndexOutOfBoundsException e){
+            System.out.println("Ошибка перехвачена: " + e);
+        }
+    }//Конец метода main()
     //Создание нового исключения, добавление его причины и непосредственный вызов.
     //После оператора throws необходимо вписать названия исключений,
     //которые не обрабатываются в данном методе.
