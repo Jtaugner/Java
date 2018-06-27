@@ -50,6 +50,7 @@ class Exceptions {
         //и так по цепочке.
         error.initCause(new NullPointerException("Причина исключения"));
         throw error;
+        //После выбрасывания ошибки выполнение кода в блоке прекращается
     }
     //Применение блока finally
     private static int finallyExample(){
