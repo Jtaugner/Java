@@ -45,6 +45,9 @@ class Exceptions {
     private static void newException() throws Exc{
         //Конструктор исключения Exc(String str), где str - описание исключения
         Exc error = new Exc("Исключеие");
+        //Добавление причины созданного исключения.
+        //У причины исключения также может быть причина,
+        //и так по цепочке.
         error.initCause(new NullPointerException("Причина исключения"));
         throw error;
     }
