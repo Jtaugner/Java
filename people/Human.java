@@ -1,5 +1,7 @@
+//Пакет - отдельный каталог для классов,
+// который может контактировать лишь с классами из данного пакета
+// или с классами с модификатором public
 package people;
-
 
 class Print {
     public static void main(String[] args) {
@@ -12,7 +14,7 @@ class Print {
         hun.say();
     }
 }
-
+//Абстрактный класс
 public abstract class Human {
     private String name;
     private int age;
@@ -35,7 +37,8 @@ public abstract class Human {
         System.out.println("Простой пример public");
     }
 }
-
+//Класс расширен из абстрактного класса Human,
+// поэтому он обязан реализовать все абстрактные методы класса Human
 class Noob extends Human {
     Noob(String n, int a) {
         super(n, a);
