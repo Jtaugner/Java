@@ -1,5 +1,3 @@
-import java.io.*;
-import java.lang.reflect.Array;
 
 //Обобщения
 class Generalizations {
@@ -46,12 +44,18 @@ class Generalizations {
         String arrStr[] = {"два", "раз", "восемь", "привет"};
         System.out.println("Cтрока \"привет\" есть в массиве arrStr? " + isIn("привет", arrStr));
         //Demogen
-        DemoGen<Integer> dg = new DemoGen<Integer>(new Integer[]{1,2,5,77,8});
+        //При создании обобщённого объекта
+        // необязательного указывать параметры типа
+        DemoGen<Integer> dg = new DemoGen<>(new Integer[]{1,2,5,77,8});
         System.out.println("Максимальное число в массиве dg: " + dg.max());
         System.out.println("Минимальное число в массиве dg: " + dg.min());
-        DemoGen<String> dgstr = new DemoGen<String>(new String[]{"рХз", "раадин", "dsa4", "66"});
+        DemoGen<String> dgstr = new DemoGen<>(new String[]{"рХз", "раадин", "dsa4", "66"});
         System.out.println("Максимальная строка массиве dgstr: " +dgstr.max());
-
+        //Можно создать массив ссылок на обобщённы тип (только так)
+        //Gen<Integer> arrt[] = new Gen<Integer>[10]; //Так нельзя
+        Gen<?> arrt[] = new Gen<?>[2];
+        arrt[0] = iObj;
+        System.out.println("arrt[0] = " + arrt[0]);
     }
     //Обобщённые метод
 
