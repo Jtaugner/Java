@@ -53,6 +53,16 @@ public class LambdaExpressions {
        //Ссылки на методы экземпляра
         TestClass tc = new TestClass();
         System.out.println(strFunc(tc::strToUpNoStat, "Третья строка будет большой?"));
+        //Сылки на обобщённые методы
+        //класс::<>метод
+        String arr[] = {"f", "ff", "fff"};
+        Integer arr2[] = {1,5,6,78,2,5};
+        System.out.println(testFunc(LambdaExpressions::<String>inArr, arr, "f"));
+        System.out.println(testFunc(LambdaExpressions::<Integer>inArr, arr2, 7));
+        //Ссылки на конструкторы
+        Constr<Integer> con = TestClass<Integer>::new;
+        //Создать объекта по ссылке на его конструктор
+        TestClass<Integer> tcInt= con.test(10);
     }
     //Лямбда-выражения как аргументы
     //Первый аргумент - функциональный интерфейс.
@@ -61,16 +71,38 @@ public class LambdaExpressions {
     static String strFunc(MyString lambda, String str){
         return lambda.getStr(str);
     }
+    static <T> boolean testFunc(IsThereOrNot<T> f, T[] arr, T path){
+        return f.test(arr, path);
+    }
+    static <T> boolean inArr(T arr[], T path){
+        for(T i : arr){
+            if(i == path) return true;
+        }
+        return false;
+    }
 }
-class TestClass{
+class TestClass<T>{
+    T obj;
     static String strToUp(String str){
         return str.toUpperCase();
     }
     String strToUpNoStat(String str){
         return str.toUpperCase();
     }
+    TestClass(T obj){
+        this.obj = obj;
+    }
+    TestClass(){
+        obj = null;
+    }
 }
 //Функциональный интерфейс - интерфейс с одним методом
+interface Constr<T>{
+    TestClass<T> test(T obj);
+}
+interface  IsThereOrNot<T>{
+    boolean test(T arr[], T path);
+}
 interface MyString{
     String getStr(String str);
 }
